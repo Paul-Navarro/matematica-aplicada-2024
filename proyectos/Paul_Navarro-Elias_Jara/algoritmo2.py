@@ -218,4 +218,25 @@ df['tiempo_total']=df.apply(lambda row: row['tiempo_fuzzification']+row['tiempo_
 
 # Guardar el resultado en un nuevo archivo CSV
 df.to_csv('resultado.csv', index=False)
+
+
+# Contar el total de tweets procesados
+total_tweets = len(df)
+
+# Contar los tweets por sentimiento defuzzificado
+total_positivos = df['sentimiento_defuzzificado'].value_counts().get('Positive', 0)
+total_negativos = df['sentimiento_defuzzificado'].value_counts().get('Negative', 0)
+total_neutrales = df['sentimiento_defuzzificado'].value_counts().get('Neutral', 0)
+
+# Calcular el tiempo promedio de ejecución
+tiempo_promedio_ejecucion = df['tiempo_total'].mean()
+
+# Imprimir los resultados en consola
+print(f"Total de tweets procesados: {total_tweets}")
+print(f"Total positivos: {total_positivos}")
+print(f"Total negativos: {total_negativos}")
+print(f"Total neutrales: {total_neutrales}")
+print(f"Tiempo promedio de ejecución: {tiempo_promedio_ejecucion:.2f} ms")
+
+
 print("El archivo csv ha sido procesado con exito!")
